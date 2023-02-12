@@ -1,0 +1,40 @@
+version: '2'
+
+#here we create the volumes. We keep the same names for backup purpouses
+volumes:
+  transmission:
+    name: transmission
+
+#we put all containers under the same newtwork
+networks:
+  internal-network:
+    driver: bridge
+    name: add_network
+    ipam:
+      config:
+        - subnet: 10.7.0.0/16
+
+services:
+  transmission:
+    image: ghcr.io/linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Bucharest
+    #      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+    #      - USER=username #optional
+    #      - PASS=password #optional
+    #      - WHITELIST=iplist #optional
+    #      - HOST_WHITELIST=dnsnane list #optional
+    volumes:
+      - transmission:/config
+      - /mnt/data/user-files//bogdan/downloads:/downloads
+      - /mnt/data/user-files//bogdan/downloads:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    networks:
+      - internal-network
+    restart: unless-stopped
