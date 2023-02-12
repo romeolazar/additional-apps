@@ -9,10 +9,7 @@ volumes:
 networks:
   internal-network:
     driver: bridge
-    name: add_network
-    ipam:
-      config:
-        - subnet: 10.7.0.0/16
+    name: additional_network
 
 services:
   transmission:
@@ -29,8 +26,8 @@ services:
     #      - HOST_WHITELIST=dnsnane list #optional
     volumes:
       - transmission:/config
-      - /mnt/data/user-files//bogdan/downloads:/downloads
-      - /mnt/data/user-files//bogdan/downloads:/watch
+      - ${USERDIR}:/downloads
+      - ${USERDIR}:/watch
     ports:
       - 9091:9091
       - 51413:51413
