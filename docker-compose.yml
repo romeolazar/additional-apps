@@ -1,17 +1,15 @@
 version: '2'
-
-#here we create the volumes. We keep the same names for backup purpouses
 volumes:
   transmission:
     name: transmission
 
-#we put all containers under the same newtwork
 networks:
   internal-network:
     driver: bridge
     name: additional_network
 
 services:
+  #download client
   transmission:
     image: ghcr.io/linuxserver/transmission
     container_name: transmission
