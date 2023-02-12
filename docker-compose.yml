@@ -2,11 +2,13 @@ version: '2'
 volumes:
   transmission:
     name: transmission
+  jdownloader:
+    name: jdownloader
 
 networks:
   internal-network:
-    driver: bridge
-    name: additional_network
+    external: true
+    name: virtual_net
 
 services:
   #download client
