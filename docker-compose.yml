@@ -1,4 +1,5 @@
 version: '2'
+
 volumes:
   transmission:
     name: transmission
@@ -51,7 +52,7 @@ services:
       - internal-network
     restart: unless-stopped
 
-  #wordpress of oldappleproducts
+  #wordpress is the world’s most popular website builder
   wordpress:
     image: wordpress
     container_name: wordpress
