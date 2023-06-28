@@ -4,7 +4,10 @@ volumes:
     name: transmission
   jdownloader:
     name: jdownloader
-
+  wordpress:
+    name: wordpress
+  wdb:
+    name: wdb
 networks:
   internal-network:
     external: true
@@ -35,3 +38,48 @@ services:
     networks:
       - internal-network
     restart: unless-stopped
+  #jdownloader - download manager from sites like mega files, rapidgator
+  jdownloader:
+    image: jlesage/jdownloader-2
+    container_name: jdownloader
+    ports:
+      - 5800:5800
+    volumes:
+      - 'jdownloader:/config:rw'
+      - '${USERDIR}:/output:rw'
+    networks:
+      - internal-network
+    restart: unless-stopped
+
+  #wordpress of oldappleproducts
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    restart: always
+    ports:
+      - 8282:80
+    environment:
+      WORDPRESS_DB_HOST: wdb
+      WORDPRESS_DB_USER: ${USERNAME}
+      WORDPRESS_DB_PASSWORD: ${PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - internal-network
+    links:
+      - wdb:wdb
+
+  wdb:
+    image: mysql:5.7
+    container_name: wordpress_db
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${USERNAME}
+      MYSQL_PASSWORD: ${PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - wdb:/var/lib/mysql
+    networks:
+      - internal-network
+    restart: always

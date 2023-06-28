@@ -15,23 +15,15 @@ LANG=:us:
 A Fast, Easy and Free Bittorrent Client For macOS, Windows and Linux. \
 GitHub: [linuxserver/docker-transmission](https://github.com/linuxserver/docker-transmission)
 
-to be updated:
-> TimeMachine, Teedy, Readarr, Prism, Photostructure, Nextcloud, Elkarbackup, Duckdns
-### [Heimdall](https://heimdall.site)
-Is a way to organise all those links to your most used web sites and web applications in a simple way. Simplicity is the key to Heimdall. Why not use it as your browser start page? \
-DockerHub: [linuxserver/heimdall](https://hub.docker.com/r/linuxserver/heimdall) \
-GitHub:[linuxserver/Heimdall](https://github.com/linuxserver/Heimdall)
+### [jDownloader](https://jdownloader.org/)
+JDownloader is a free, open-source download management tool with a huge community that makes downloading as easy and fast as it should be. \
+DockerHub: [jlesage/jdownloader-2](https://hub.docker.com/r/jlesage/jdownloader-2) \
+GitHub: [jlesage/docker-jdownloader-2](https://github.com/jlesage/docker-jdownloader-2)
 
-### Owntone
-(iTunes) is a media server with support for AirPlay devices, Apple Remote (and compatibles), Chromecast, MPD and internet radio. \
-DockerHub: [owntone/forked-daapd](https://github.com/owntone/forked-daapd) \
-GitHub: [linuxserver/daapd](https://hub.docker.com/r/linuxserver/daapd)
-
-### Watchtower
-With watchtower you can update the running version of your containerized app simply by pushing a new image to the Docker Hub or your own image registry. Watchtower will pull down your new image, gracefully shut down your existing container and restart it with the same options that were used when it was deployed initially. \
-
-DockerHub: [containrrr/watchtower](https://hub.docker.com/r/containrrr/watchtower) \
-GitHub: [containrrr/watchtower](https://github.com/containrrr/watchtower)
+### [Wordpress](https://wordpress.org/download/)
+The world’s most popular website builder. \
+DockerHub: [wordpress](https://hub.docker.com/_/wordpress) \
+GitHub: [wordpress](https://github.com/docker-library/wordpress) 
 ## Info
 Because all the services are setup with `docker-compose` they can all reach each other by their Docker Compose service name. So for example when connecting Sonarr with Jacket or qBittorrent, then Jackett would be available on `http://jackett/api....`, which makes everything a lot easier.
 
